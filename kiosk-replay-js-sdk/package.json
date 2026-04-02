@@ -37,6 +37,8 @@
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
   "dependencies": {
-    "@rrweb/record": "^2.0.0-alpha.20"
+    "@rrweb/record": "^2.0.0-alpha.20",
+    "@rrweb/types": "^2.0.0-alpha.20",
+    "idb": "^8.0.3"
   }
 }
