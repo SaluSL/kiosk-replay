@@ -20,5 +20,5 @@ const routes = [
 ];
 
 routes.forEach((route) => {
-  deviceRoutes.basePath("/device").route("/", route);
+  deviceRoutes.route("/", route);
 });

@@ -11,5 +11,5 @@ locationRoutes.use(protectedRoutesMiddleware);
 const routes = [locationAddRoute, locationListRoute];
 
 routes.forEach((route) => {
-  locationRoutes.basePath("/location").route("/", route);
+  locationRoutes.route("/", route);
 });

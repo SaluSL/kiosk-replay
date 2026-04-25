@@ -16,7 +16,11 @@ export const eventBatch = sqliteTable(
       .$defaultFn(() => randomUUIDv7())
       .primaryKey(),
     deviceId: text().references(() => device.id, { onDelete: "set null" }),
+    idFromClient: text(),
     events: blob().notNull(),
+    compression: text({ enum: ["brotli"] })
+      .notNull()
+      .default("brotli"),
     oldestTimestamp: integer().notNull(),
     newestTimestamp: integer().notNull(),
     createdAt: integer()

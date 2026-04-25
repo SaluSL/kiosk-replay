@@ -4,6 +4,7 @@ import { auth } from "@/lib/auth";
 import { cors } from "hono/cors";
 import { locationRoutes } from "@/features/location/@routes";
 import { deviceRoutes } from "@/features/device/@routes";
+import { eventRoutes } from "@/features/event/@routes";
 import { AppEnv } from "@/lib/types";
 
 const app = new Hono<AppEnv>();
@@ -51,11 +52,11 @@ app.get("/session", (c) => {
   });
 });
 
-const routes = [locationRoutes, deviceRoutes];
+const api = app.basePath("/api/v1");
 
-routes.forEach((route) => {
-  app.basePath("/api/v1").route("/", route);
-});
+api.route("/location", locationRoutes);
+api.route("/device", deviceRoutes);
+api.route("/event", eventRoutes);
 
 export default {
   port: appConfig.port,

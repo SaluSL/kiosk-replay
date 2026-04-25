@@ -1,0 +1,1 @@
+ALTER TABLE `event_batch` ADD `compression` text DEFAULT 'brotli' NOT NULL;
