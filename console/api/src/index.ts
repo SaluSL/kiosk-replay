@@ -2,13 +2,11 @@ import { Hono } from "hono";
 import { appConfig } from "@/lib/config";
 import { auth } from "@/lib/auth";
 import { cors } from "hono/cors";
+import { locationRoutes } from "@/features/location/@routes";
+import { deviceRoutes } from "@/features/device/@routes";
+import { AppEnv } from "@/lib/types";
 
-const app = new Hono<{
-  Variables: {
-    user: typeof auth.$Infer.Session.user | null;
-    session: typeof auth.$Infer.Session.session | null;
-  };
-}>();
+const app = new Hono<AppEnv>();
 
 app.use(
   "*",
@@ -51,6 +49,12 @@ app.get("/session", (c) => {
     session,
     user,
   });
+});
+
+const routes = [locationRoutes, deviceRoutes];
+
+routes.forEach((route) => {
+  app.basePath("/api/v1").route("/", route);
 });
 
 export default {
